@@ -2,5 +2,31 @@
   Home
 
 <:Body>
-  <h1>Home</h1>
-
+	<div class="panel panel-info">
+		<div class="panel-heading">What's new</div>
+		<div class="panel-body">
+  		<form e-submit="submit_headline" role="form">
+	  		<textarea class="form-control" placeholder="" value="{{page._headline_body}}" rows="3"></textarea>
+            <br>
+            <span class="text-danger pull-left">{{store._users.count}} users, {{store.headlines.count}} headlines</span>
+	  		<button href="#" class="btn btn-primary pull-right btn-sm">Add</button>
+  		</form>
+  		<div class="clearfix"></div>
+            <hr>
+            <ul class="media-list">
+                {{store._headlines.reverse.each do |hl|}}
+                    <li class="media">
+                        {{if hl.can_delete?(:body)}}
+                        <span class="pull-right">
+                            <button e-click="hl.destroy" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button>
+                        </span>
+                        {{end}}
+                        <div class="media-body">
+                            <strong class="text-success">@{{hl.user.name}}</strong>
+                            <p>{{hl.body}}</p>
+                        </div>
+                    </li>
+                {{end}}
+            </ul>
+		</div>
+	</div>

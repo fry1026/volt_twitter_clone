@@ -1,12 +1,24 @@
 # By default Volt generates this controller for your Main component
 module Main
   class MainController < Volt::ModelController
+    # model :store
     def index
       # Add code for when the index view is loaded
     end
 
     def about
-      puts 'about page was loaded'
+      # 
+    end
+
+    def submit_headline
+      store._headlines
+        .create(body: page._headline_body)
+        .then{page._headline_body = ''}
+        .fail{|err| add_error(err)}
+    end
+
+    def add_error(err)
+      err.each{|k,v| flash._errors.create "#{k}: #{v.join('.')}"}
     end
 
     private
