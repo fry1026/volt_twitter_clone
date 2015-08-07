@@ -10,6 +10,21 @@ module Main
       # 
     end
 
+    def age(hl)
+      age = ((Time.now - Time.parse(hl.created_at))/60).floor
+      if age == 0
+        "just now"
+      elsif age ==1
+        "1 minute ago"
+      elsif age < 60
+        "#{age} minutes ago"
+      elsif (age/60).floor ==1
+        "1 hour ago"
+      elseif (age/60).floor > 1
+        "#{(age/60).floor} hours ago"
+      end
+    end
+
     def submit_headline
       store._headlines
         .create(body: page._headline_body)

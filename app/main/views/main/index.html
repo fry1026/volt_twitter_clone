@@ -3,13 +3,11 @@
 
 <:Body>
 	<div class="panel panel-info">
-		<div class="panel-heading">What's new</div>
+		<div class="panel-heading">Tell me what's new</div>
 		<div class="panel-body">
   		<form e-submit="submit_headline" role="form">
-	  		<textarea class="form-control" placeholder="" value="{{page._headline_body}}" rows="3"></textarea>
-            <br>
-            <span class="text-danger pull-left">{{store._users.count}} users, {{store.headlines.count}} headlines</span>
-	  		<button href="#" class="btn btn-primary pull-right btn-sm">Add</button>
+	  		<input class="form-control" placeholder="" value="{{page._headline_body}}" rows="3"></input>
+
   		</form>
   		<div class="clearfix"></div>
             <hr>
@@ -22,11 +20,13 @@
                         </span>
                         {{end}}
                         <div class="media-body">
-                            <strong class="text-success">@{{hl.user.name}}</strong>
+                            <strong class="text-success">@{{hl.user.name}}</strong> <span class="label label-default"> {{ age(hl) }}</span>
                             <p>{{hl.body}}</p>
                         </div>
                     </li>
                 {{end}}
             </ul>
+            <br>
+            <span class="text-danger pull-left">{{store._users.count}} user(s), {{store.headlines.count}} headlines</span>
 		</div>
 	</div>
