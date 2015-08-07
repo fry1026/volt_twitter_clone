@@ -12,7 +12,6 @@ module Main
 
     def age(hl)
       age = ((Time.now - Time.parse(hl.created_at))/60).floor
-      puts age
       if age == 0
         "just now"
       elsif age ==1
