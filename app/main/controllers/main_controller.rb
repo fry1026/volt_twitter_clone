@@ -20,7 +20,7 @@ module Main
         "#{age} minutes ago"
       elsif (age/60).floor ==1
         "1 hour ago"
-      elseif (age/60).floor > 1
+      elsif (age/60).floor > 1
         "#{(age/60).floor} hours ago"
       end
     end
