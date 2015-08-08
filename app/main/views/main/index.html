@@ -3,30 +3,52 @@
 
 <:Body>
 	<div class="panel panel-info">
-		<div class="panel-heading">Tell me what's new</div>
+		<div class="panel-heading">Most Recent News</div>
 		<div class="panel-body">
-  		<form e-submit="submit_headline" role="form">
-	  		<input class="form-control" placeholder="" value="{{page._headline_body}}" rows="3"></input>
+            {{if Volt.current_user?.value}}
 
-  		</form>
-  		<div class="clearfix"></div>
+            <form e-submit="submit_headline" role="form">
+                <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter your updates here" value="{{page._headline_body}}">
+                <span class="input-group-btn"><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button></span>
+                </div>
+            </form>
+            {{else}}
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                You need to be logged-in to post a message.
+            </div>
+            {{end}}
+            <div class="clearfix"></div>
+            <!--<:fields:select value="{{ page._role }}" options="{{all_users}}"/>-->
+            <!--<:fields:checkbox checked="{{ page._active }}"/>-->
+            <!--<p>Active?: {{page._active}}</p>-->
+            <!--<p>Role: {{page._role}}</p>-->
             <hr>
-            <ul class="media-list">
-                {{store._headlines.reverse.each do |hl|}}
-                    <li class="media">
+
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Filter</span>
+                <input type="text" class="form-control" placeholder="Type to filter headlines" aria-describedby="sizing-addon2" value="{{page._headline_filter}}">
+            </div>
+
+            <br>
+            <ul class="list-group">
+                {{headlines2.each do |hl|}}
+                    <li class="list-group-item">
                         {{if hl.can_delete?(:body)}}
                         <span class="pull-right">
                             <button e-click="hl.destroy" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button>
                         </span>
                         {{end}}
-                        <div class="media-body">
-                            <strong class="text-success">@{{hl.user.name}}</strong> <span class="label label-default"> {{ age(hl) }}</span>
-                            <p>{{hl.body}}</p>
-                        </div>
+                            <strong class="text-success">@{{hl.user.name}}</strong> <span class="badge"> {{ age(hl) }}</span>
+                            {{hl.body}}
+
                     </li>
                 {{end}}
             </ul>
             <br>
-            <span class="text-danger pull-left">{{store._users.count}} user(s), {{store.headlines.count}} headlines</span>
+
 		</div>
+        <div class="panel-footer">Currently {{store._users.count}} user(s) and {{store.headlines.count}} headline(s) in the system.</div>
 	</div>

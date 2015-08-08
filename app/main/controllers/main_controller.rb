@@ -4,10 +4,21 @@ module Main
     # model :store
     def index
       # Add code for when the index view is loaded
+      page._active = true
+      page._role = "Bob"
     end
 
     def about
       # 
+    end
+
+    def headlines2
+      query = { '$regex' => page._headline_filter || '', '$options' => 'i' }
+      store._headlines.where({'$or' => [{body: query}]})
+    end
+
+    def all_users
+      store.users.all.map{|u| u.name}.value
     end
 
     def age(hl)

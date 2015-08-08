@@ -6,10 +6,9 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <:nav href="/">Home</:nav>
-        <:nav href="/about">About</:nav>
         <:user_templates:menu />
       </ul>
-      <h3 class="text-muted">Heroku Deployment Test of Volt</h3>
+      <h3 class="text-muted">News</h3>
     </div>
 
     <:volt:notices />
@@ -17,7 +16,8 @@
     {{ view main_path, 'body', {controller_group: 'main'} }}
 
     <div class="footer">
-      <p>&copy; Company {{ Time.now.year }}</p>
+      <p>Created with <a href="http://www.voltframework.com">Volt Framework</a> based on Datamelon's <a href="http://datamelon.io/blog/2015/twitter-clone-demonstrates-volt-permissions.html">Twitter Clone Tutorial</a></p>
+      <p>Source code available <a href="https://github.com/fry1026/volt_twitter_clone">on Github</a></p>
     </div>
 
   </div>
