@@ -34,8 +34,8 @@
 
             <br>
             <ul class="list-group">
-                {{headlines2.each do |hl|}}
-                    <li class="list-group-item">
+                {{headlines.each_with_index do |hl, index|}}
+                    <li class="list-group-item" e-click="show_headline_details(index)">
                         {{if hl.can_delete?(:body)}}
                         <span class="pull-right">
                             <button e-click="hl.destroy" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button>
@@ -43,12 +43,31 @@
                         {{end}}
                             <strong class="text-success">@{{hl.user.name}}</strong> <span class="badge"> {{ age(hl) }}</span>
                             {{hl.body}}
-
                     </li>
                 {{end}}
             </ul>
             <br>
 
-		</div>
+                {{ if page._headline_details_visible }}
+                <div class="panel panel-warning">
+                    {{if current_headline.can_delete?(:body)}}
+                    <div class="panel-heading">Edit details</div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Body</span>
+                            <input type="text" class="form-control" value="{{ current_headline.body}}" aria-describedby="basic-addon1">
+                        </div>
+                        <button e-click="hide_headline_details" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    {{else}}
+                        <div class="panel-heading">Show details</div>
+                        <div class="panel-body">
+                            <p><label>Body:</label><span>{{current_headline.body}}</span></p>
+                            <button e-click="hide_headline_details" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                    {{end}}
+                </div>
+                {{ end }}
+            </div>
         <div class="panel-footer">Currently {{store._users.count}} user(s) and {{store.headlines.count}} headline(s) in the system.</div>
 	</div>

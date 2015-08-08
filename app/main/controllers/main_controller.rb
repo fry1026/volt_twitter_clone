@@ -4,15 +4,27 @@ module Main
     # model :store
     def index
       # Add code for when the index view is loaded
-      page._active = true
-      page._role = "Bob"
+
     end
 
     def about
       # 
     end
 
-    def headlines2
+    def show_headline_details(index)
+      page._headline_details_visible = true
+      params._index = index
+    end
+
+    def hide_headline_details
+      page._headline_details_visible = false
+    end
+
+    def current_headline
+      store._headlines[(params._index || 0).to_i]
+    end
+
+    def headlines
       query = { '$regex' => page._headline_filter || '', '$options' => 'i' }
       store._headlines.where({'$or' => [{body: query}]})
     end
