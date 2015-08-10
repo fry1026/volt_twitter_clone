@@ -156,7 +156,7 @@ DEPENDENCIES
   chromedriver2-helper (~> 0.0.8)
   concurrent-ruby-ext (~> 0.8.0)
   csso-rails (~> 0.3.4)
-  httparty
+  httparty (~> 0.13.5)
   opal-rspec (~> 0.4.2)
   poltergeist (~> 1.5.0)
   rbnacl

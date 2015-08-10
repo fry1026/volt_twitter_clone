@@ -1,4 +1,4 @@
-require 'HTTParty'
+require 'httparty'
 class GithubTasks < Volt::Task
   def get_commits
     #TODO: cover connection problems
