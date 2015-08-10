@@ -11,6 +11,15 @@ module Main
       # 
     end
 
+    def show_commits
+      GithubTasks.get_commits
+      .then do |commits|
+        page._list_commits = commits
+      end.fail do |error|
+        page._list_commits = error
+      end
+    end
+
     def show_headline_details(index)
       page._headline_details_visible = true
       params._index = index

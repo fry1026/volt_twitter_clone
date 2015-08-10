@@ -7,6 +7,8 @@ ruby "2.1.6"
 gem 'volt', '0.9.4'
 # gem 'volt', github: 'voltrb/volt' # running from master
 
+gem 'httparty'
+
 # volt uses mongo as the default data store.
 gem 'volt-mongo', '~> 0.1.0'
 

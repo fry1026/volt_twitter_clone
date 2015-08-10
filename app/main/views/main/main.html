@@ -17,9 +17,17 @@
 
     <div class="footer">
       <p>Created with <a href="http://www.voltframework.com">Volt Framework</a> based on Datamelon's <a href="http://datamelon.io/blog/2015/twitter-clone-demonstrates-volt-permissions.html">Twitter Clone Tutorial</a></p>
-      <p>Source code available <a href="https://github.com/fry1026/volt_twitter_clone">on Github</a></p>
+      <div class="panel panel-default">
+        <div class="panel-heading panel-info">Most recent changes for this application. Source code available <a href="https://github.com/fry1026/volt_twitter_clone">on Github</a></div>
+        <div class="panel-body">
+          <div class="list-group">
+            {{show_commits.first(3).each do |c|}}
+            <a href="{{c[1]}}" class="list-group-item list-group-item-info">{{c[2]}}: {{c[0]}} ({{Time.parse(c[3]).strftime("%A, %b %d %Y")}})</a>
+            {{end}}
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 
 <:Nav>
