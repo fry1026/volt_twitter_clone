@@ -34,7 +34,7 @@
 
             <br>
             <ul class="list-group">
-                {{headlines.each_with_index do |hl, index|}}
+                {{headlines2.each_with_index do |hl, index|}}
                     <li class="list-group-item" e-click="show_headline_details(index)">
                         {{if hl.can_delete?(:body)}}
                         <span class="pull-right">

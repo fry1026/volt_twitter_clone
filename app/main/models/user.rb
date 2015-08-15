@@ -7,5 +7,5 @@ class User < Volt::User
   field :name
   validate login_field, unique: true, length: 8
   validate :email, email: true
-
+  has_many :headlines
 end

@@ -2,7 +2,7 @@ class Headline < Volt::Model
 	own_by_user
 	field :body, String
 	field :created_at
-
+	belongs_to :user
 	permissions(:read, :create) {allow}
 	permissions(:delete, :update) {deny unless owner?}
 
