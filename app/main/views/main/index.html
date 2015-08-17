@@ -36,7 +36,7 @@
             <ul class="list-group">
                 {{headlines2.each_with_index do |hl, index|}}
                     <li class="list-group-item" e-click="show_headline_details(index)">
-                        {{if hl.can_delete?(:body)}}
+                        {{if hl.can_delete?(:body) or (Volt.current_user || Volt.current_user.value.admin == 'true')}}
                         <span class="pull-right">
                             <button e-click="hl.destroy" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button>
                         </span>

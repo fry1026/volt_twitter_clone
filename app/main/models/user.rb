@@ -8,4 +8,11 @@ class User < Volt::User
   validate login_field, unique: true, length: 8
   validate :email, email: true
   has_many :headlines
+  field :admin, String #default no
+
+  before_validate :set_default_admin_to_false
+
+  def set_default_admin_to_false
+    self.admin='false' unless admin
+  end
 end
